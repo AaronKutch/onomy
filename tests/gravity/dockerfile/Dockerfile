@@ -1,4 +1,4 @@
-FROM fedora:33
+FROM fedora:34
 RUN dnf install -y git make gcc gcc-c++ which iproute iputils procps-ng vim-minimal tmux net-tools htop tar jq npm openssl-devel perl rust cargo
 
 RUN curl https://dl.google.com/go/go1.16.4.linux-amd64.tar.gz --output /root/go.tar.gz
@@ -10,7 +10,7 @@ ENV GOPATH=/root/go
 ADD https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.26-e5eb32ac.tar.gz /geth/
 RUN cd /geth && tar -xvf * && mv /geth/**/geth /usr/bin/geth
 # this is the Gravity bridge release, update it along with your go.mod entry
-ARG ETH_BRIDGE_VERSION="v0.0.8"
+ARG ETH_BRIDGE_VERSION="v0.1.0eth2"
 ADD https://github.com/onomyprotocol/cosmos-gravity-bridge/releases/download/$ETH_BRIDGE_VERSION/test-runner /usr/bin/test-runner
 RUN chmod +x /usr/bin/test-runner
 ADD https://github.com/onomyprotocol/cosmos-gravity-bridge/releases/download/$ETH_BRIDGE_VERSION/Gravity.json /solidity/Gravity.json
